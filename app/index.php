@@ -5,8 +5,9 @@ require_once 'models/Score.php';
 
 $score = new Score();
 
-// check for last timestamp
-if(isset($_POST['last'])) {
+// get current score
+if(isset($_POST['last']))
+{
     // process sent last timestamp
     $last_timestamp = intval($_POST['last']);
 
@@ -28,4 +29,13 @@ if(isset($_POST['last'])) {
         // sleep for 1second to prevent flooding the server
         sleep(1);
     }
+}
+
+// another async request
+else if(isset($_POST['epoch']))
+{
+    // sleep(2);
+    echo json_encode([
+        'timestamp' => time()
+    ]);
 }
